@@ -14,3 +14,6 @@ From there, there are a few functions that:
 * check the board for a 'win' or a 'draw'
 
 It was a fun project that helped solidify the learnings from chapter 5 of "Automate the boring stuff".
+
+# Input Checking
+Please note I have not perfected the game (e.g. I don't error-check user input) because the purpose of this projectwas to solidy my understanding of dictionaries.
