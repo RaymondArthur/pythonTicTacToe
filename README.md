@@ -15,5 +15,7 @@ From there, there are a few functions that:
 
 It was a fun project that helped solidify the learnings from chapter 5 of "Automate the boring stuff".
 
-# Input Checking
-Please note I have not perfected the game (e.g. I don't error-check user input) because the purpose of this projectwas to solidy my understanding of dictionaries.
+# User Input Validation
+User input validation has been implemented to make sure users don't enter rubbish data.
+
+User inputs are converted to lower case to increase accuracy of validation.
