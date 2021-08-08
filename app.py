@@ -99,8 +99,8 @@ def checkForWinner(playerSelected):
             printBoard()
             print(playerSelected + ' wins, well done!!!')
             playAgain = ''
-            while(playAgain not in allowedInputsRestart):
-                playAgain = input('Would you like to play again? (y/n)')
+            while(playAgain.lower() not in allowedInputsRestart):
+                playAgain = input('Would you like to play again? (y/n)').lower()
             if(playAgain == 'y'):
                 clearBoard()
                 playerTurn()
@@ -115,8 +115,8 @@ def checkForDraw():
         printBoard()
         print('The game is a draw!')
         playAgain = ''
-        while(playAgain not in allowedInputsRestart):        
-            playAgain = input('Would you like to play again? (y/n)')
+        while(playAgain.lower() not in allowedInputsRestart):        
+            playAgain = input('Would you like to play again? (y/n)').lower()
         if(playAgain == 'y'):
             clearBoard()
             playerTurn()
@@ -138,8 +138,8 @@ def playerTurn():
 
         #get desired cell from players
         playerInput = ''
-        while(playerInput not in allowedInputs):
-            playerInput = input(playerSelected + ': Toggle which cell? \n')
+        while(playerInput.lower() not in allowedInputs):
+            playerInput = input(playerSelected + ': Toggle which cell? \n').lower()
         
         #check if player(s) want to exit the game. If yes, the game is exited.
         if(playerInput == 'exit'):
