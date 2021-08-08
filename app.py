@@ -98,12 +98,15 @@ def checkForWinner(playerSelected):
             
             printBoard()
             print(playerSelected + ' wins, well done!!!')
-            playAgain = input('Would you like to play again? (y/n)')
+            playAgain = ''
+            while(playAgain not in allowedInputsRestart):
+                playAgain = input('Would you like to play again? (y/n)')
             if(playAgain == 'y'):
                 clearBoard()
                 playerTurn()
-            else:
+            elif(playAgain == 'n'):
                 exit()
+
 
 #checks for a drawn game (i.e. no ' ' (i.e. space) values exist in the dictionary = a draw, since the board is full and no more moves are possible)
 def checkForDraw():
@@ -111,7 +114,9 @@ def checkForDraw():
     if((' ' in theBoard.values()) == False):
         printBoard()
         print('The game is a draw!')
-        playAgain = input('Would you like to play again? (y/n)')
+        playAgain = ''
+        while(playAgain not in allowedInputsRestart):        
+            playAgain = input('Would you like to play again? (y/n)')
         if(playAgain == 'y'):
             clearBoard()
             playerTurn()
@@ -132,7 +137,9 @@ def playerTurn():
         playerSelected = ('Player 1') if (player1 == True) else ('Player 2')
 
         #get desired cell from players
-        playerInput = input(playerSelected + ': Toggle which cell? \n')
+        playerInput = ''
+        while(playerInput not in allowedInputs):
+            playerInput = input(playerSelected + ': Toggle which cell? \n')
         
         #check if player(s) want to exit the game. If yes, the game is exited.
         if(playerInput == 'exit'):
@@ -164,6 +171,9 @@ theBoard = {
     'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
     'top-L': ' ', 'top-M': ' ', 'top-R': ' '
 }
+
+allowedInputs = ('1','2','3','4','5','6','7','8','9','exit')
+allowedInputsRestart = ('y','n')
 
 #running the game through the game() function
 game()
