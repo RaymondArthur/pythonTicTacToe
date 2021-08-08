@@ -1,15 +1,4 @@
-# def valueFixedInstrument(ttm,fv,couponRate,y):
-#     pv = 0
-#     for i in range(1,ttm+1):
-#         if(i == ttm):
-#             pv += (fv*couponRate + fv) / ((1+y)**i)
-#         else:
-#             pv += (fv*couponRate) / ((1+y)**i)
-
-#     return round(pv,6)
-
-# print(valueFixedInstrument(10,10000000,.1,.09))
-
+#prints the board to the console with some white space
 def printBoard():
     print('\n'*100)
     print('-' + ' ' +'-' + ' ' +'-' + ' ' +'-' + ' ' +'-' + ' '+'\n', end ='')
@@ -20,7 +9,7 @@ def printBoard():
     print(theBoard['low-L'] + ' | ' + theBoard['low-M'] + ' | ' + theBoard['low-R']+'\n',end ='')
     print('-' + ' ' +'-' + ' ' +'-' + ' ' +'-' + ' ' +'-' + ' '+'\n',end ='')
     
-
+#updates the board dictionary object based on player input
 def updateBoard(playerInput, playerSelected):
     if(playerInput == str(7)):
         theBoard['top-L'] = 'X' if(playerSelected == 'Player 1') else 'O'
@@ -41,6 +30,13 @@ def updateBoard(playerInput, playerSelected):
     elif(playerInput == str(3)):
         theBoard['low-R'] = 'X' if(playerSelected == 'Player 1') else 'O' 
 
+#function to clear the board dictiobary object in the event the game is restarted
+def clearBoard():
+    for i in theBoard: 
+        theBoard[i] = ' '
+        
+#checks for 'win' conditions
+#if a 'win' condition exists, the game ends and the players are asked if they want to play again 
 def checkForWinner(playerSelected):
     if(
         (
@@ -109,6 +105,7 @@ def checkForWinner(playerSelected):
             else:
                 exit()
 
+#checks for a drawn game (i.e. no ' ' (i.e. space) values exist in the dictionary = a draw, since the board is full and no more moves are possible)
 def checkForDraw():
     print(' ' in theBoard.values())
     if((' ' in theBoard.values()) == False):
@@ -121,7 +118,7 @@ def checkForDraw():
         else:
             exit()
 
-
+#a while loop that asks for player input, checks if the players want to exit, and checks for winning conditions or a draw
 def playerTurn():
     gameStatus = 'Continue'
     player1 = True
@@ -136,7 +133,8 @@ def playerTurn():
 
         #get desired cell from players
         playerInput = input(playerSelected + ': Toggle which cell? \n')
-
+        
+        #check if player(s) want to exit the game. If yes, the game is exited.
         if(playerInput == 'exit'):
             print('Thanks for playing, bye!')
             exit()
@@ -146,25 +144,26 @@ def playerTurn():
         else:
             updateBoard(playerInput,playerSelected)
         
-        checkForDraw()
+        #checks for 'win' condition by calling checkForWinner() function and passing in the currently selected player
         checkForWinner(playerSelected)
-        gameStatus = playerInput
+        
+        #checks for a draw by calling checkForDraw() function
+        checkForDraw()
+        
         player1 = not player1
 
-def clearBoard():
-    for i in theBoard: 
-        theBoard[i] = ' '
-
+#game() is the entry point to the game
 def game():
     playerTurn()
 
-#global variables
+###global variables###
 
+#the dictionary used to track values in the tic-tac-toe board
 theBoard = {
     'low-L': ' ', 'low-M': ' ', 'low-R': ' ',
     'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
     'top-L': ' ', 'top-M': ' ', 'top-R': ' '
 }
-p1='player1'
-p2='player2'
+
+#running the game through the game() function
 game()
